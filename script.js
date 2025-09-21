@@ -356,16 +356,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // Isotope Initialization
     const $grid = $('.works-grid').isotope({
         itemSelector: '.work-item',
-        layoutMode: 'fitRows',
-        transitionDuration: '0.6s', // Keep this duration
-        hiddenStyle: {
-            opacity: 0,
-            transform: 'scale(0.95)'
-        },
-        visibleStyle: {
-            opacity: 1,
-            transform: 'scale(1)'
-        }
+        layoutMode: 'fitRows', // Use fitRows to arrange items in rows
+        transitionDuration: '0.6s'
     });
 
     // Re-layout Isotope on window resize (debounced)
@@ -373,7 +365,7 @@ document.addEventListener("DOMContentLoaded", function() {
     $(window).on('resize', function() {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function() {
-            $grid.isotope('layout'); // Re-layout Isotope when window size changes
+            $grid.isotope('layout');
         }, 250);
     });
 
