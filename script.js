@@ -170,10 +170,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (!hangingContainer || !threadLine || !processBoard) return;
 
-            // Position the hanging container relative to the underline
-            const underline = document.querySelector('.underline');
-            const processSection = document.querySelector('.process-section');
-            
             // Set initial position
             gsap.set(hangingContainer, {
                 top: '100%',
@@ -361,7 +357,24 @@ document.addEventListener("DOMContentLoaded", function() {
     const $grid = $('.works-grid').isotope({
         itemSelector: '.work-item',
         layoutMode: 'fitRows',
-        transitionDuration: '0.8s'
+        transitionDuration: '0.6s', // Keep this duration
+        hiddenStyle: {
+            opacity: 0,
+            transform: 'scale(0.95)'
+        },
+        visibleStyle: {
+            opacity: 1,
+            transform: 'scale(1)'
+        }
+    });
+
+    // Re-layout Isotope on window resize (debounced)
+    let resizeTimer;
+    $(window).on('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            $grid.isotope('layout'); // Re-layout Isotope when window size changes
+        }, 250);
     });
 
     // Filter button click handler

@@ -586,7 +586,10 @@ body {
 
 /* Works Section */
 .works-section {
-    padding: 15px 50px 50px 50px;
+    padding-top: 100px; /* Ensures space above heading */
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -628,12 +631,35 @@ body {
     box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
 }
 
-.works-grid {
+.works-grid-wrapper {
     width: 100%;
     max-width: 1200px;
+    /* Custom Scrollbar Styles */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #00aaff #0a142f; /* For Firefox */
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+.works-grid-wrapper::-webkit-scrollbar {
+    width: 12px;
+}
+
+.works-grid-wrapper::-webkit-scrollbar-track {
+    background: #0a142f; /* Darker background for the track */
+    border-radius: 10px;
+}
+
+.works-grid-wrapper::-webkit-scrollbar-thumb {
+    background-color: #00aaff; /* Blue thumb */
+    border-radius: 10px;
+    border: 3px solid #0a142f; /* Padding around thumb */
+}
+
+.works-grid {
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
+    /* Moved gap here for consistent spacing */
+    gap: 25px; 
 }
 
 .work-item {
@@ -643,10 +669,14 @@ body {
     padding: 25px;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    transition: transform 0.4s ease, opacity 0.4s ease;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    will-change: transform, opacity;
+    height: 220px; /* Fixed height for uniform cards */
+    display: flex; /* Helps center content vertically if needed */
+    flex-direction: column;
+    justify-content: center;
 }
 
 .work-item:before {
@@ -694,6 +724,12 @@ body {
     font-size: 0.95rem;
     color: #ccc;
     line-height: 1.5;
+    /* Allow text to take multiple lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis for overflowed text */
 }
 
 /* Isotope Animations */
@@ -704,13 +740,54 @@ body {
 .isotope-hidden.isotope-item {
     pointer-events: none;
     z-index: 1;
+    opacity: 0;
+    transform: scale(0.001);
 }
 
 .works-grid.isotope,
 .works-grid.isotope .isotope-item {
-  transition-duration: 0.8s;
+  transition-duration: 0.6s; /* Kept existing duration for fade/scale */
 }
 
 .works-grid.isotope .isotope-item {
-  transition-property: transform, opacity;
+  /* Critical for smooth repositioning and fade/scale transitions */
+  transition-property: transform, opacity, left, top;
+}
+
+/* Responsive Works Section */
+@media (max-width: 768px) {
+    .works-section {
+        padding-top: 120px; /* Increased for mobile to prevent overlap with preceding sections */
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 30px;
+    }
+    .works-grid-wrapper {
+        max-height: 720px; /* Shows approximately 3 cards + gaps before scrolling (3 * 220px card + 2 * 20px gap) */
+        overflow-y: auto;
+        padding-right: 15px; /* Space for scrollbar */
+    }
+    .works-grid {
+        grid-template-columns: 1fr; /* Single column for mobile */
+        gap: 20px; /* Gap between cards on mobile */
+    }
+    .work-item {
+        max-width: 350px; /* Ensures card doesn't get too wide on larger mobile screens */
+        margin: 0 auto; /* Centers the single card in the row */
+    }
+}
+
+@media (min-width: 769px) {
+    .works-section {
+        padding-top: 100px; /* Retain laptop padding */
+    }
+    .works-grid-wrapper {
+        max-height: 470px; /* Shows approximately 2 rows + gaps before scrolling (2 * 220px card + 1 * 25px gap) */
+        overflow-y: auto;
+        padding-right: 15px; /* Space for scrollbar */
+    }
+    .works-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for laptop */
+        gap: 25px; /* Gap between cards on desktop */
+    }
 }
