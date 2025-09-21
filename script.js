@@ -342,4 +342,35 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     }
+
+    // --- WORKS SECTION ---
+    // GSAP Animation for the title
+    gsap.to(".works-title", {
+        scrollTrigger: {
+            trigger: ".works-section",
+            start: "top 80%",
+            toggleActions: "play none none none"
+        },
+        duration: 1.5,
+        rotateX: 0,
+        opacity: 1,
+        ease: "power3.out"
+    });
+
+    // Isotope Initialization
+    const $grid = $('.works-grid').isotope({
+        itemSelector: '.work-item',
+        layoutMode: 'fitRows',
+        transitionDuration: '0.8s'
+    });
+
+    // Filter button click handler
+    $('.filter-buttons').on('click', 'button', function() {
+        const filterValue = $(this).attr('data-filter');
+        $grid.isotope({ filter: filterValue });
+
+        // Active button state
+        $('.filter-btn').removeClass('active');
+        $(this).addClass('active');
+    });
 });

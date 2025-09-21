@@ -583,3 +583,134 @@ body {
         display: flex !important;
     }
 }
+
+/* Works Section */
+.works-section {
+    padding: 15px 50px 50px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+}
+
+.works-title {
+    margin-bottom: 30px;
+}
+
+.filter-buttons {
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 2px solid #00aaff;
+    color: #00aaff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: #00aaff;
+    color: #000;
+    box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+}
+
+.works-grid {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.work-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.work-item:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 170, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.work-item:hover:before {
+    left: 100%;
+}
+
+.work-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.work-content {
+    text-align: center;
+}
+
+.work-icon {
+    font-size: 2.8rem;
+    color: #00aaff;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.work-item:hover .work-icon {
+    transform: scale(1.1);
+}
+
+.work-title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.work-desc {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.5;
+}
+
+/* Isotope Animations */
+.isotope-item {
+    z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+    pointer-events: none;
+    z-index: 1;
+}
+
+.works-grid.isotope,
+.works-grid.isotope .isotope-item {
+  transition-duration: 0.8s;
+}
+
+.works-grid.isotope .isotope-item {
+  transition-property: transform, opacity;
+}
