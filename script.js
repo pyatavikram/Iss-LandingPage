@@ -114,7 +114,8 @@ document.addEventListener("DOMContentLoaded", function() {
         scrollTrigger: {
             trigger: ".clients-section",
             start: "top 80%",
-            toggleActions: "play none none none"
+            toggleActions: "play none none none",
+            once: true
         },
         duration: 1.5,
         rotateX: 0,
@@ -126,7 +127,8 @@ document.addEventListener("DOMContentLoaded", function() {
         scrollTrigger: {
             trigger: ".clients-section",
             start: "top 70%",
-            toggleActions: "play none none none"
+            toggleActions: "play none none none",
+            once: true
         },
         duration: 1.2,
         opacity: 0,
@@ -140,7 +142,8 @@ document.addEventListener("DOMContentLoaded", function() {
         scrollTrigger: {
             trigger: ".services-section",
             start: "top 80%",
-            toggleActions: "play none none none"
+            toggleActions: "play none none none",
+            once: true
         },
         duration: 1.5,
         rotateX: 0,
@@ -152,7 +155,8 @@ document.addEventListener("DOMContentLoaded", function() {
         scrollTrigger: {
             trigger: ".services-container",
             start: "top 80%",
-            toggleActions: "play none none none"
+            toggleActions: "play none none none",
+            once: true
         },
         duration: 1,
         translateY: 0,
@@ -167,6 +171,7 @@ document.addEventListener("DOMContentLoaded", function() {
             trigger: ".process-section",
             start: "top 70%",
             toggleActions: "play none none none",
+            once: true
         }
     });
 
@@ -207,7 +212,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 scrollTrigger: {
                     trigger: ".underline",
                     start: "bottom 80%",
-                    toggleActions: "play none none reverse"
+                    toggleActions: "play none none none",
+                    once: true
                 },
                 delay: 0.5
             });
@@ -279,7 +285,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 scrollTrigger: {
                     trigger: ".underline",
                     start: "bottom 85%",
-                    toggleActions: "play none none reverse"
+                    toggleActions: "play none none none",
+                    once: true
                 },
                 delay: 0.3
             });
@@ -371,7 +378,8 @@ document.addEventListener("DOMContentLoaded", function() {
         scrollTrigger: {
             trigger: ".works-section",
             start: "top 80%",
-            toggleActions: "play none none none"
+            toggleActions: "play none none none",
+            once: true
         },
         duration: 1.5,
         rotateX: 0,
@@ -410,7 +418,8 @@ document.addEventListener("DOMContentLoaded", function() {
         scrollTrigger: {
             trigger: ".about-us-section",
             start: "top 70%",
-            toggleActions: "play none none reverse"
+            toggleActions: "play none none none",
+            once: true
         }
     });
 
@@ -459,7 +468,8 @@ document.addEventListener("DOMContentLoaded", function() {
         scrollTrigger: {
             trigger: ".team-section",
             start: "top 70%",
-            toggleActions: "play none none reverse"
+            toggleActions: "play none none none",
+            once: true
         }
     });
 
@@ -506,7 +516,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const teamCardInners = document.querySelectorAll('.team-card-inner');
             gsap.to(teamCardInners, {
                 rotateY: 180, // Flip to reveal the back
-                duration: 1, // Faster flip
+                duration: 0.5, // Faster flip
                 ease: "back.out(1.7)", // Snappier ease for a nice effect
                 stagger: 0.2
             });
