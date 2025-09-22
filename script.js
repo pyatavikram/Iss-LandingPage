@@ -561,6 +561,70 @@ document.addEventListener("DOMContentLoaded", function() {
         opacity: 1,
         ease: "power3.out"
     });
+    
+    // --- [FINAL FIX] ROBUST SCROLL HANDLING FOR WORKS SECTION ---
+    const worksGridWrapper = document.querySelector('.works-grid-wrapper');
+    if (worksGridWrapper) {
+
+        // --- MOUSE WHEEL / TRACKPAD HANDLING (Laptops, Desktops) ---
+        worksGridWrapper.addEventListener('wheel', (event) => {
+            const el = worksGridWrapper;
+            const scrollAmount = event.deltaY;
+            const isAtTop = el.scrollTop === 0;
+            const isAtBottom = Math.abs(el.scrollHeight - el.clientHeight - el.scrollTop) < 1;
+
+            // If scrolling DOWN (positive deltaY) AND we are at the BOTTOM
+            if (scrollAmount > 0 && isAtBottom) {
+                // Prevent the default scroll on the element, which would do nothing and get "stuck"
+                event.preventDefault();
+                // Manually scroll the main window
+                window.scrollBy(0, scrollAmount);
+            }
+            // If scrolling UP (negative deltaY) AND we are at the TOP
+            else if (scrollAmount < 0 && isAtTop) {
+                // Prevent the default scroll on the element
+                event.preventDefault();
+                // Manually scroll the main window
+                window.scrollBy(0, scrollAmount);
+            }
+            // If we are scrolling in the middle, the browser's default behavior is fine.
+        });
+
+
+        // --- TOUCH HANDLING (Mobile, Tablets) ---
+        let touchStartY = 0;
+
+        worksGridWrapper.addEventListener('touchstart', (event) => {
+            // Record the starting touch position
+            touchStartY = event.touches[0].clientY;
+        }, { passive: true });
+
+        worksGridWrapper.addEventListener('touchmove', (event) => {
+            const el = worksGridWrapper;
+            const currentY = event.touches[0].clientY;
+            const scrollDirection = touchStartY - currentY; // positive = scrolling down, negative = scrolling up
+
+            const isAtTop = el.scrollTop === 0;
+            const isAtBottom = Math.abs(el.scrollHeight - el.clientHeight - el.scrollTop) < 1;
+
+            // If trying to scroll DOWN (positive direction) while at the BOTTOM
+            if (scrollDirection > 0 && isAtBottom) {
+                // Allow the default behavior, which on most mobile browsers is to
+                // transfer the scroll to the parent (scroll chaining). We don't preventDefault here.
+                return;
+            }
+            // If trying to scroll UP (negative direction) while at the TOP
+            else if (scrollDirection < 0 && isAtTop) {
+                // Allow the default behavior to scroll the main page up.
+                return;
+            }
+            
+            // If the user is actively scrolling within the element, we need to
+            // stop the main page from moving to prevent a jarring experience.
+            event.stopPropagation();
+        });
+    }
+
 
     // --- DYNAMIC YEAR ---
     const yearSpan = document.getElementById("current-year");
