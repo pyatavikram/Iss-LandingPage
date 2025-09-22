@@ -1125,6 +1125,33 @@ body {
     overflow-wrap: break-word;
     overflow-y: auto;
     max-height: 100px;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+.team-desc::-webkit-scrollbar {
+    width: 8px;
+}
+
+.team-desc::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.team-desc::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.team-desc:hover {
+    scrollbar-color: #00aaff #0a142f;
+}
+
+.team-desc:hover::-webkit-scrollbar-thumb {
+    background-color: #00aaff;
+}
+
+.team-desc:hover::-webkit-scrollbar-track {
+    background: #0a142f;
 }
 
 .team-social-icons {
