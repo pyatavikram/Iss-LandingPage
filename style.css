@@ -1193,3 +1193,126 @@ body {
         height: 380px; /* Explicit height for mobile */
     }
 }
+
+/* --- Contact Us Section --- */
+.contact-section {
+    padding: 0px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    min-height: 70vh;
+}
+
+.contact-title {
+    margin-bottom: 40px;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 35px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(50px);
+    text-decoration: none;
+    color: #fff;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 150, 255, 0.1);
+    color: #fff;
+}
+
+.contact-icon {
+    font-size: 3rem;
+    color: #00aaff;
+    margin-bottom: 20px;
+}
+
+.contact-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.contact-card p {
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.6;
+    word-break: break-all;
+}
+
+/* --- Footer --- */
+.site-footer {
+    background: #0a142f;
+    padding: 30px 50px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(100%);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.copyright-text {
+    color: #ccc;
+    font-size: 1rem;
+}
+
+.footer-social-icons a {
+    color: #ccc;
+    font-size: 1.4rem;
+    margin-left: 20px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.footer-social-icons a:hover {
+    color: #00aaff;
+    transform: scale(1.2);
+}
+
+/* Responsive Contact & Footer */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 0px 20px;
+        min-height: auto;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-social-icons a {
+        margin: 0 10px;
+    }
+}

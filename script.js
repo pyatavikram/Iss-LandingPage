@@ -522,4 +522,49 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
     }, "-=0.4");
+
+    // --- CONTACT US SECTION ANIMATIONS ---
+    const contactTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".contact-section",
+            start: "top 70%",
+            toggleActions: "play none none none",
+            once: true
+        }
+    });
+
+    contactTl.to(".contact-title", {
+        duration: 1.5,
+        rotateX: 0,
+        opacity: 1,
+        ease: "power3.out"
+    });
+
+    contactTl.to(".contact-card", {
+        duration: 1,
+        translateY: 0,
+        opacity: 1,
+        stagger: 0.2,
+        ease: "power2.out"
+    }, "-=1");
+
+    // --- FOOTER ANIMATION ---
+    gsap.to(".site-footer", {
+        scrollTrigger: {
+            trigger: ".site-footer",
+            start: "top 95%",
+            toggleActions: "play none none none",
+            once: true
+        },
+        duration: 1.2,
+        y: 0,
+        opacity: 1,
+        ease: "power3.out"
+    });
+
+    // --- DYNAMIC YEAR ---
+    const yearSpan = document.getElementById("current-year");
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
 });
