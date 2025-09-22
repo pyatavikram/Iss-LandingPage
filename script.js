@@ -423,7 +423,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // 2. Nail appears
-    aboutUsTl.to(".nail", {
+    aboutUsTl.to(".about-us-section .nail", {
         scale: 1,
         opacity: 1,
         duration: 0.5,
@@ -431,7 +431,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }, "-=1");
 
     // 3. Threads draw down
-    aboutUsTl.to([".thread-left", ".thread-right"], {
+    aboutUsTl.to([".about-us-section .thread-left", ".about-us-section .thread-right"], {
         strokeDashoffset: 0,
         duration: 1,
         ease: "power2.out"
@@ -440,7 +440,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // 4. Board drops and reveals
     aboutUsTl.to(".about-us-board", {
         opacity: 1,
-        y: 0, // This is controlled by margin-top, so we just animate opacity
+        y: 0, 
         duration: 1,
         ease: "power2.out"
     }, "-=0.5");
@@ -454,4 +454,62 @@ document.addEventListener("DOMContentLoaded", function() {
         ease: "power2.out"
     }, "-=0.4");
 
+    // --- OUR TEAM SECTION ANIMATIONS ---
+    const teamTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".team-section",
+            start: "top 70%",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+    // 1. Title reveals
+    teamTl.to(".team-heading", {
+        duration: 1.5,
+        rotateX: 0,
+        opacity: 1,
+        ease: "power3.out"
+    });
+
+    // 2. Nail appears
+    teamTl.to(".team-section .nail", {
+        scale: 1,
+        opacity: 1,
+        duration: 0.5,
+        ease: "back.out(1.7)"
+    }, "-=1");
+
+    // 3. Threads draw down
+    teamTl.to([".team-section .thread-left", ".team-section .thread-right"], {
+        strokeDashoffset: 0,
+        duration: 1,
+        ease: "power2.out"
+    }, "-=0.7");
+
+    // 4. Board drops and reveals
+    teamTl.to(".team-board", {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out"
+    }, "-=0.5");
+
+    // 5. Team cards appear and then trigger flip
+    teamTl.to(".team-card", {
+        opacity: 1,
+        y: 0,
+        stagger: 0.3,
+        duration: 0.8,
+        ease: "power2.out",
+        onComplete: function() {
+            // Target the inner container for the flip animation
+            const teamCardInners = document.querySelectorAll('.team-card-inner');
+            gsap.to(teamCardInners, {
+                rotateY: 180, // Flip to reveal the back
+                duration: 1, // Faster flip
+                ease: "back.out(1.7)", // Snappier ease for a nice effect
+                stagger: 0.2
+            });
+        }
+    }, "-=0.4");
 });

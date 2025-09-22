@@ -868,28 +868,31 @@ body {
     justify-content: center;
     margin-bottom: 10px;
     width: 100%;
-    padding-top: 0px; /* Space for the nail */
+    padding-top: 19px; 
 }
 
+/* MODIFICATION: Nail is absolutely positioned on top of everything */
 .nail {
     position: absolute;
     top: 0;
     left: 50%;
     width: 20px;
     height: 20px;
-    background: radial-gradient(circle, #e0e0e0, #a0a0a0);
+    background: linear-gradient(145deg, #e0e0e0, #9e9e9e);
     border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.5);
     transform: translateX(-50%) scale(0);
     opacity: 0;
+    z-index: 3; /* Highest z-index */
 }
 
+/* MODIFICATION: SVG is also absolutely positioned on top of the board */
 .hanging-thread-svg {
     position: absolute;
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1;
+    z-index: 0; /* Renders above board, but below nail */
     filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.3));
 }
 
@@ -899,6 +902,7 @@ body {
     stroke-dashoffset: 128;
 }
 
+/* MODIFICATION: Board has a lower z-index so nail/threads appear on top */
 .about-us-board {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -911,6 +915,8 @@ body {
     max-width: 800px;
     margin-top: 80px; /* Space below the threads */
     opacity: 0;
+    position: relative; /* Needed for stacking context */
+    z-index: 1; /* Lowest z-index in this container */
 }
 
 .about-us-board p {
@@ -974,5 +980,173 @@ body {
     
     .detail-box h3 {
         font-size: 1.6rem;
+    }
+} 
+
+/* --- Our Team Section --- */
+.team-section {
+    padding: 80px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+}
+
+.team-heading {
+    color: #fff !important; /* Ensure it is white */
+}
+
+.team-content-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-board {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 25px 35px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 800px;
+    margin-top: 80px;
+    opacity: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.team-board p {
+    margin: 0;
+    text-align: center;
+    line-height: 1.7;
+    font-size: 1.05rem;
+    color: #e0e0e0;
+}
+
+.team-cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 80px; /* Increased gap for desktop */
+    margin-top: 50px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.team-card {
+    width: 280px; /* Decreased size */
+    height: 380px; /* Decreased size */
+    perspective: 1000px;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.team-card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+}
+
+.team-card-front,
+.team-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.team-card-front {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.team-card-back {
+    background: rgba(22, 36, 61, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transform: rotateY(180deg); /* Hide the back initially */
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #00aaff;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.team-name {
+    font-size: 1.5rem;
+    margin: 10px 0 5px;
+}
+
+.team-job-title {
+    font-size: 1rem;
+    color: #00aaff;
+    margin: 0 0 15px;
+}
+
+.team-desc {
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.team-social-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.team-social-icons a {
+    color: #fff;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.team-social-icons a:hover {
+    color: #00aaff;
+}
+
+@media (max-width: 768px) {
+    .team-section {
+        padding: 60px 20px;
+    }
+    .team-board {
+        width: 100%;
+        padding: 20px;
+    }
+    .team-board p {
+        font-size: 1rem;
+    }
+    .team-cards-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    .team-card {
+        width: 90%;
+        max-width: 300px;
+        margin: 0 auto; /* Ensures centering */
     }
 }
