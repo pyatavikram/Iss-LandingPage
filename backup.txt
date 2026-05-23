@@ -45,7 +45,7 @@
         </div>
         <div class="logo-scroller">
             <div class="scroller-track">
-                <!-- 10 Primary Client Logos -->
+                <!-- 10 Primary Client Logos (5 Unique Logos Repeated Twice) -->
                 <div class="logo-item">
                     <img src="assets/bhel-logo.png" alt="BHEL">
                 </div>
@@ -54,9 +54,6 @@
                 </div>
                 <div class="logo-item">
                     <img src="assets/delhi-public-school.jpg" alt="Delhi Public School">
-                </div>
-                <div class="logo-item">
-                    <img src="assets/tsrtc-logo.png" alt="TGSRTC">
                 </div>
                 <div class="logo-item">
                     <img src="assets/sainath-logo.png" alt="SaiNath Developers">
@@ -71,10 +68,13 @@
                     <img src="assets/logo-yesbank.png" alt="Yes Bank">
                 </div>
                 <div class="logo-item">
-                    <img src="assets/tsrtc-logo.png" alt="TGSRTC">
+                    <img src="assets/delhi-public-school.jpg" alt="Delhi Public School">
                 </div>
                 <div class="logo-item">
                     <img src="assets/sainath-logo.png" alt="SaiNath Developers">
+                </div>
+                <div class="logo-item">
+                    <img src="assets/dsrauto-logo.png" alt="DSRAuto">
                 </div>
 
                 <!-- Logos are duplicated for a seamless loop -->
@@ -88,9 +88,6 @@
                     <img src="assets/delhi-public-school.jpg" alt="Delhi Public School">
                 </div>
                 <div class="logo-item">
-                    <img src="assets/tsrtc-logo.png" alt="TGSRTC">
-                </div>
-                <div class="logo-item">
                     <img src="assets/sainath-logo.png" alt="SaiNath Developers">
                 </div>
                 <div class="logo-item">
@@ -103,10 +100,13 @@
                     <img src="assets/logo-yesbank.png" alt="Yes Bank">
                 </div>
                 <div class="logo-item">
-                    <img src="assets/tsrtc-logo.png" alt="TGSRTC">
+                    <img src="assets/delhi-public-school.jpg" alt="Delhi Public School">
                 </div>
                 <div class="logo-item">
                     <img src="assets/sainath-logo.png" alt="SaiNath Developers">
+                </div>
+                <div class="logo-item">
+                    <img src="assets/dsrauto-logo.png" alt="DSRAuto">
                 </div>
             </div>
         </div>
